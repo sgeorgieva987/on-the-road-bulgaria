@@ -7,6 +7,7 @@ from fastapi import APIRouter, BackgroundTasks, Depends, File, Form, HTTPExcepti
 from fastapi.responses import FileResponse
 from PIL import Image, UnidentifiedImageError
 from sqlalchemy.orm import Session
+from sqlalchemy import or_
 from app.core.config import settings
 from app.db import get_db
 from app.dependencies import get_current_user, get_optional_user, require_admin
@@ -14,6 +15,7 @@ from app.models import BookSource, Destination, SourcePage, SourceReference, Tex
 from app.schemas import PageDestinationLinkRequest, ReviewTextRequest, SearchResult, SourceOut, SourcePageOut, SourceReferenceStatusUpdate
 from app.services.ocr import create_passages
 from app.services.background_jobs import run_ocr_job
+from app.api.routes.destinations import _search_terms
 
 router = APIRouter(prefix="/api", tags=["historical sources and OCR"])
 admin_router = APIRouter(prefix="/api/admin", tags=["administration"])
@@ -275,7 +277,8 @@ def search_historical_text(
     if len(q) < 2 or len(q) > 160:
         raise HTTPException(status_code=422, detail="Search query must contain 2–160 characters")
     limit = min(max(limit, 1), 50)
-    query = db.query(TextPassage, SourcePage, BookSource).join(SourcePage, TextPassage.source_page_id == SourcePage.id).join(BookSource, TextPassage.source_id == BookSource.id).filter(TextPassage.text.ilike(f"%{q}%"))
+    conditions = [TextPassage.text.ilike(f"%{term}%") for term in _search_terms(q)]
+    query = db.query(TextPassage, SourcePage, BookSource).join(SourcePage, TextPassage.source_page_id == SourcePage.id).join(BookSource, TextPassage.source_id == BookSource.id).filter(or_(*conditions))
     if not (user and user.is_admin):
         query = query.filter(
             SourcePage.review_status == "reviewed",

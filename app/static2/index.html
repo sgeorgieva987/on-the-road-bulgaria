@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="bg">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Откривай културни и природни дестинации в България, планирай пътувания и търси в дигитализирани исторически източници.">
+  <title>On the Road Bulgaria — открий България</title>
+  <link rel="stylesheet" href="./styles.css?v=static2-5">
+</head>
+
+<body>
+  <div class="announcement"><span class="announcement-dot"></span> Култура · Природа · Местни истории <span
+      class="announcement-note">Демонстрационна версия · проверявай актуалните условия преди пътуване</span></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="On the Road Bulgaria – начало">
+      <img class="brand-mark" src="./logo_without_text.png" alt="On the Road Bulgaria">
+      <span class="brand-copy"><strong>ON THE ROAD</strong><small>BULGARIA · ОТКРИВАЙ СЪС СМИСЪЛ</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Основна навигация">
+      <a class="nav-link active" href="#explore" data-nav="explore">Открий</a>
+      <a class="nav-link" href="#planner" data-nav="planner">Планирай пътуване</a>
+      <a class="nav-link" href="#archive" data-nav="archive">Исторически архив</a>
+      <a class="nav-link" href="#about" data-nav="about">За проекта</a>
+    </nav>
+    <button class="profile-btn" id="profileOpen"><span class="profile-icon">↗</span><span id="profileLabel">Вход /
+        Профил</span></button>
+    <button class="mobile-menu" id="mobileMenu" aria-label="Отвори меню">☰</button>
+  </header>
+  <main>
+    <section id="home" class="hero shell hero-without-art">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> ПЪТУВАНЕ СЪС СЪДЪРЖАНИЕ</div>
+        <h1>България има<br><em>още истории.</em></h1>
+        <p>Открий места с характер, свържи се с местната култура и планирай маршрути, които имат значение — отвъд
+          обичайните спирки.</p>
+        <div class="hero-actions"><a href="#explore" class="btn btn-primary">Открий дестинации <span>↗</span></a><a
+            href="#planner" class="btn btn-ghost">Създай маршрут <span>→</span></a></div>
+        <div class="hero-footnote"><span class="tiny-spark">✳</span><span>По-бавни пътувания. По-дълбоки
+            истории.<br><b>Повече България.</b></span></div>
+      </div>
+      <div class="hero-art" aria-label="Стилизирана карта на България" hidden>
+        <div class="map-label label-north">ДУНАВСКА РАВНИНА <i></i></div>
+        <div class="map-label label-west">РИЛА <i></i></div>
+        <div class="map-label label-south">РОДОПИ <i></i></div>
+        <div class="map-label label-east">ЧЕРНО МОРЕ <i></i></div>
+        <svg class="contour-map" viewBox="0 0 600 500" aria-hidden="true">
+          <defs>
+            <linearGradient id="land" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#e2e7ce" />
+              <stop offset="1" stop-color="#b8c79d" />
+            </linearGradient>
+            <pattern id="dots" width="13" height="13" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r=".9" fill="#9cae83" opacity=".55" />
+            </pattern>
+          </defs>
+          <path
+            d="M94 111l45-22 27 9 35-10 45 18 31-12 44 13 26-5 35 17 29-2 25 24 35 10-5 26 22 24-16 25 8 21-20 10-19 43-33 0-11 29-24 5-10 28-34-5-22 15-30-8-31 9-33-12-29 11-20-16-31 1-17-20-34-2-3-21-24-10 11-24-11-20 13-19-7-22 13-26-3-22 24-10-2-20z"
+            fill="url(#land)" stroke="#9aa981" stroke-width="1.5" />
+          <path
+            d="M94 111l45-22 27 9 35-10 45 18 31-12 44 13 26-5 35 17 29-2 25 24 35 10-5 26 22 24-16 25 8 21-20 10-19 43-33 0-11 29-24 5-10 28-34-5-22 15-30-8-31 9-33-12-29 11-20-16-31 1-17-20-34-2-3-21-24-10 11-24-11-20 13-19-7-22 13-26-3-22 24-10-2-20z"
+            fill="url(#dots)" opacity=".85" />
+          <g fill="none" stroke="#f9fbf1" stroke-width="1.6" opacity=".8">
+            <path d="M76 143c60-19 105-4 146 25s93 25 140 5 82-3 135 25" />
+            <path d="M79 167c72-20 119 6 157 26s89 22 136 2 87 7 130 29" />
+            <path d="M86 198c48-5 86 21 125 31s84 8 119-5 77 5 106 25" />
+            <path d="M110 235c50-8 79 17 122 27s86-5 122-8 67 10 91 22" />
+            <path d="M142 277c43-20 78 7 111 14s71-9 102-3 52 12 65 7" />
+          </g>
+          <g fill="#f8faf0" stroke="#87966f" stroke-width="1">
+            <circle cx="241" cy="201" r="6" />
+            <circle cx="310" cy="296" r="5" />
+            <circle cx="377" cy="226" r="4" />
+            <circle cx="202" cy="299" r="4" />
+            <circle cx="390" cy="322" r="4" />
+          </g>
+          <g fill="#31462f" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1"><text
+              x="252" y="197">СОФИЯ</text><text x="319" y="292">ПЛОВДИВ</text><text x="385" y="221">ВЕЛИКО
+              ТЪРНОВО</text></g>
+        </svg>
+        <div class="hero-pin pin-one"><span>01</span></div>
+        <div class="hero-pin pin-two"><span>02</span></div>
+        <div class="hero-pin pin-three"><span>03</span></div>
+        <div class="art-caption"><span class="caption-icon">✳</span><span><b>Повече от дестинация.</b><small>Истории,
+              които остават с теб.</small></span></div>
+      </div>
+      <div class="hero-bottom-rule"><span>БЪЛГАРИЯ · ТВОЯТА ТОЧКА</span><span>ОТКРИВАЙ МЕСТАТА ЗАД
+          ИСТОРИИТЕ</span><span>BG · 01 / 28</span></div>
+    </section>
+
+    <section id="explore" class="section shell section-explore">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-line"></span> ЗАПОЧНИ ОТТУК</div>
+          <h2>Намери своята <em>следваща спирка.</em></h2>
+        </div>
+        <p class="section-aside">От познати забележителности до места, които чакат да бъдат открити. Използвай
+          интересите си, за да намериш своето.</p>
+      </div>
+      <div class="explore-toolbar">
+        <label class="search-box"><span>⌕</span><input id="destinationSearch"
+            placeholder="Търси място, град или история…" autocomplete="off"><kbd>ENTER</kbd></label>
+        <label class="select-wrap"><span class="sr-only">Категория</span><select id="categoryFilter">
+            <option value="">Всички интереси</option>
+            <option value="история">История и наследство</option>
+            <option value="природа">Природа и еко-пътеки</option>
+            <option value="музей">Музеи и археология</option>
+            <option value="традиции">Традиции и занаяти</option>
+            <option value="вино">Вино и местна храна</option>
+            <option value="култура">Култура и архитектура</option>
+          </select><span>⌄</span></label>
+        <button id="useLocation" class="btn btn-outline">◎ Близо до мен</button><button id="recommendationsButton"
+          class="btn btn-outline">✳ За мен</button>
+      </div>
+      <div id="locationStatus" class="inline-status" aria-live="polite"></div>
+      <div class="explore-grid">
+        <div class="map-panel">
+          <div class="map-panel-top">
+            <div><b>Карта на откритията</b><small>Избери маркер за детайли</small></div>
+          </div>
+          <div id="destinationMap" aria-label="Интерактивна карта на дестинациите"></div>
+          <div class="map-legend"><span><i class="legend-dot legend-culture"></i> Култура и история</span><span><i
+                class="legend-dot legend-nature"></i> Природа</span><span><i class="legend-dot legend-local"></i> Местни
+              истории</span></div>
+        </div>
+        <div class="results-panel">
+          <div class="results-head">
+            <div>
+              <h3>Места за откриване</h3>
+              <p id="resultsCount">Зареждане на дестинации…</p>
+            </div><button class="text-btn" id="clearFilters">Изчисти филтрите ↗</button>
+          </div>
+          <div class="destination-list" id="destinationList">
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+          </div><button class="btn btn-outline btn-full" id="loadMore">Покажи още места <span>＋</span></button>
+        </div>
+      </div>
+      <div class="curation-note"><span>✳</span>
+        <div><b>Малка бележка за големите истории</b>
+          <p>Данните в тази демонстрация са примерни. Преди реално пътуване проверявай работното време, достъпа, цените
+            и условията чрез официални източници.</p>
+        </div><a href="#archive">Разгледай архива →</a>
+      </div>
+    </section>
+
+    <section id="planner" class="section section-tinted">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> ТВОЯТ МАРШРУТ</div>
+            <h2>По-малко скролване.<br><em>Повече преживяване.</em></h2>
+          </div>
+          <p class="section-aside">Задай времето, интересите и отправната точка. Алгоритъмът ще предложи подреден
+            маршрут с приблизителна оценка на времето.</p>
+        </div>
+        <div class="planner-layout">
+          <form id="plannerForm" class="planner-form">
+            <div class="form-title-row">
+              <div class="form-step">01</div>
+              <div><b>Настрой пътуването</b><small>Промени параметрите по всяко време.</small></div>
+            </div>
+            <div class="form-grid"><label class="field field-wide"><span>Начална точка</span>
+                <div class="location-choice"><button type="button" class="btn btn-outline" id="plannerUseLocation">◎ Използвай моето местоположение</button><span id="plannerLocationLabel" class="field-help">Ще поискаме разрешение преди да използваме местоположението ти.</span></div>
+                <input id="startLat" type="hidden" value=""><input id="startLon" type="hidden" value="">
+              </label>
+              <label class="field"><span>Налично време</span><select id="timeBudget">
+                  <option value="180">2–3 часа</option>
+                  <option value="360">Половин ден</option>
+                  <option value="480">Цял ден</option>
+                  <option value="720">До 12 часа</option>
+                </select></label>
+              <label class="field"><span>Придвижване</span><select id="transportMode">
+                  <option value="car">С автомобил</option>
+                  <option value="walking">Пеша · локален маршрут</option>
+                  <option value="train">Влак (БДЖ)</option>
+                </select></label>
+              <label class="field"><span>Бюджет за посещения (€)</span><input id="budget" type="number" min="0" step="1"
+                  placeholder="Без строг лимит"></label>
+              <label class="field"><span>Макс. радиус (км)</span><input id="radius" type="number" min="1" max="1000"
+                  placeholder="Напр. 80"></label>
+            </div>
+            <div class="field"><span>Какво те привлича?</span>
+              <div class="interest-chips" id="plannerInterests"><label><input type="checkbox"
+                    value="история"><span>История</span></label><label><input type="checkbox"
+                    value="култура"><span>Култура</span></label><label><input type="checkbox"
+                    value="природа"><span>Природа</span></label><label><input type="checkbox"
+                    value="музей"><span>Музеи</span></label><label><input type="checkbox"
+                    value="традиции"><span>Традиции</span></label><label><input type="checkbox" value="вино"><span>Храна
+                    и вино</span></label></div>
+            </div>
+            <div class="route-selection-box">
+              <div><b>Избери конкретни спирки</b><small>Можеш да свържеш места от различни градове и села. Избраните
+                  места няма да бъдат премахнати от маршрута заради радиуса или времевия лимит.</small></div>
+              <div id="selectedRouteSummary" class="selected-route-summary"><span class="muted">Все още няма избрани
+                  места.</span></div><button type="button" class="text-btn" id="clearRouteSelection">Изчисти избраните
+                спирки ↗</button><small class="field-help">Добавяй места от списъка чрез „+ Добави към
+                маршрута“.</small>
+            </div>
+            <div class="form-checks"><label><input id="includeUnverified" type="checkbox" checked><span>Включи
+                  демонстрационни записи, които чакат проверка</span></label><label><input id="returnToStart"
+                  type="checkbox"><span>Върни ме до началната точка</span></label><label><input
+                  id="rememberTripInterests" type="checkbox"><span>Запази избраните интереси в профила ми за бъдещи
+                  предложения (след вход)</span></label></div>
+            <button class="btn btn-primary btn-full" type="submit">Генерирай маршрут <span>↗</span></button>
+            <div id="plannerStatus" class="inline-status" aria-live="polite"></div>
+          </form>
+          <div class="itinerary-panel">
+            <div class="itinerary-empty" id="itineraryEmpty">
+              <div class="route-illustration"><svg viewBox="0 0 160 110" aria-hidden="true">
+                  <path d="M15 85C36 83 37 27 65 31s20 53 48 37 15-38 31-52" fill="none" stroke="#a9bd8c"
+                    stroke-width="3" stroke-linecap="round" stroke-dasharray="5 7" />
+                  <circle cx="15" cy="85" r="8" fill="#36543a" />
+                  <circle cx="65" cy="31" r="7" fill="#edb55e" />
+                  <circle cx="113" cy="68" r="7" fill="#edb55e" />
+                  <circle cx="144" cy="16" r="8" fill="#36543a" />
+                </svg></div>
+              <div class="eyebrow">ТВОЯТА СЛЕДВАЩА ИСТОРИЯ</div>
+              <h3>Маршрутът ти<br>започва тук.</h3>
+              <p>Попълни настройките и ще видиш препоръчаните спирки, разстоянията и приблизителното време за посещение.
+              </p>
+              <div class="empty-chips"><span>01 · Открий</span><span>02 · Подреди</span><span>03 · Тръгни</span></div>
+            </div>
+            <div id="itineraryResults" class="itinerary-results hidden"></div>
+          </div>
+        </div>
+        <div class="estimate-disclaimer"><span>ⓘ</span>
+          <p>Когато е конфигуриран Google Routes API, разстоянията и времената се изчисляват по пътната/пешеходната
+            мрежа. Без ключ се използват приблизителни оценки. БДЖ разписанията не са интегрирани и трябва да се
+            проверят отделно.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="archive" class="section shell">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-line"></span> ДИГИТАЛНО НАСЛЕДСТВО</div>
+          <h2>Стари книги.<br><em>Нови начини да ги откриеш.</em></h2>
+        </div>
+        <p class="section-aside">Историческите източници могат да съдържат информация, която трудно се намира онлайн.
+          Търси в проверени откъси, свързани с конкретна книга и страница.</p>
+      </div>
+      <div class="archive-intro">
+        <div class="archive-icon">Aa</div>
+        <div><b>Търси в колекцията</b>
+          <p>Резултатите за публичен достъп включват само прегледани текстове с проверен статус и известни права за
+            използване.</p>
+        </div>
+        <div class="archive-stats"><span><strong>OCR</strong><small>Разпознаване на
+              текст</small></span><span><strong>BG</strong><small>Български
+              език</small></span><span><strong>↗</strong><small>Източник и страница</small></span></div>
+      </div>
+      <form id="archiveSearchForm" class="archive-search"><span>⌕</span><input id="archiveQuery" minlength="2"
+          maxlength="160" placeholder="Потърси селище, личност, обичай или паметник…" required><button
+          class="btn btn-primary" type="submit">Търси в архива <span>↗</span></button></form>
+      <div id="archiveStatus" class="inline-status" aria-live="polite"></div>
+      <div id="archiveResults" class="archive-results">
+        <div class="archive-placeholder"><span>⌕</span>
+          <p>Започни с търсене на дума или име. Когато бъдат добавени и проверени източници, тук ще се появят откъси с
+            библиографски данни.</p>
+        </div>
+      </div>
+      <div class="admin-box" id="adminBox">
+        <div class="admin-box-head">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> САМО ЗА АДМИНИСТРАТОРИ</div>
+            <h3>Дигитализирай исторически източник</h3>
+            <p>Качвай сканирани страници или PDF. Оригиналът остава непроменен; OCR текстът е чернова до човешка
+              проверка.</p>
+          </div><button class="btn btn-outline" id="loadSources">Зареди източниците ↻</button>
+        </div>
+        <form id="uploadSourceForm" class="upload-form"><label class="field"><span>Заглавие на книгата *</span><input
+              name="title" required minlength="2" maxlength="320" placeholder="Напр. История на…"></label><label
+            class="field"><span>Автор</span><input name="author" maxlength="320"
+              placeholder="Автор или съставител"></label><label class="field"><span>Година</span><input
+              name="publication_year" type="number" min="1000" max="2100" placeholder="1900"></label><label
+            class="field"><span>Права за използване</span><select name="copyright_status">
+              <option value="unknown">Неизвестни</option>
+              <option value="public_domain">Обществено достояние</option>
+              <option value="licensed">Лицензирано</option>
+              <option value="permission_granted">Има разрешение</option>
+              <option value="restricted">Ограничено</option>
+            </select></label><label class="field upload-file-field"><span>Файл · PDF или изображение *</span><input
+              name="file" type="file" accept=".pdf,.png,.jpg,.jpeg,.tif,.tiff,.webp" required><small>До 20 MB · максимум
+              200 страници в PDF</small></label><button class="btn btn-primary" type="submit">Качи източника
+            <span>↑</span></button></form>
+        <div id="sourceStatus" class="inline-status" aria-live="polite"></div>
+        <div id="adminSourcesList" class="admin-sources-list"></div>
+      </div>
+    </section>
+
+    <section id="about" class="section section-dark">
+      <div class="shell about-grid">
+        <div>
+          <div class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> ЗА ПРОЕКТА</div>
+          <h2>Пътуване, което<br><em>свързва точките.</em></h2>
+          <p>On the Road Bulgaria обединява планирането на пътувания с дигитализирането на исторически книги и
+            регионални публикации. Целта е да направим културното наследство, местните истории и по-малко познатите
+            места по-лесни за откриване.</p><a class="btn btn-light" href="#explore">Започни да откриваш
+            <span>↗</span></a>
+        </div>
+        <div class="about-pillars">
+          <article><span>01</span>
+            <div>
+              <h3>Откривай осъзнато</h3>
+              <p>Филтрирай по интереси, време и приблизителна близост.</p>
+            </div>
+          </article>
+          <article><span>02</span>
+            <div>
+              <h3>Уважавай източника</h3>
+              <p>Историческият текст трябва да запазва връзка с книгата и страницата.</p>
+            </div>
+          </article>
+          <article><span>03</span>
+            <div>
+              <h3>Пътувай отговорно</h3>
+              <p>Проверявай местните правила, сезонните условия и официалната информация.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="shell about-bottom"><span>ON THE ROAD BULGARIA</span><span>БЪЛГАРИЯ Е ПОВЕЧЕ ОТ ЕДНА ПОСОКА.</span><a
+          href="#privacy">Поверителност и условия ↗</a></div>
+    </section>
+    <section id="privacy" class="privacy-section shell">
+      <div><b>Поверителност и условия</b>
+        <p>Това е MVP демонстрация, не е готова за публично производство. Не качвайте документи, за които нямате право
+          да ги съхранявате. Не публикувайте исторически извлечения преди проверка на точността и правата за използване.
+        </p>
+      </div><a href="#home">Обратно нагоре ↑</a>
+    </section>
+  </main>
+  <footer class="footer shell">
+
+    <a class="brand brand-small" href="#home">
+      <img class="brand-mark" src="./logo.png" alt="On the Road Bulgaria">
+      <span class="brand-copy"><strong>ON THE ROAD</strong><small>BULGARIA</small></span>
+    </a>
+    
+    <p>Направено с любопитство към местата и историите на България.</p><span>© <span id="year"></span> · MVP 0.2</span>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="accountDialog" class="account-dialog"><button class="dialog-close" id="closeAccount"
+      aria-label="Затвори">×</button>
+    <div class="eyebrow"><span class="eyebrow-line"></span> ТВОЯТ ПРОФИЛ</div>
+    <h2>Нека направим<br><em>пътуването лично.</em></h2>
+    <p class="dialog-intro">Влез, за да запазваш любими места и маршрути.</p>
+    <div class="account-tabs"><button class="account-tab active" data-account-tab="login">Вход</button><button
+        class="account-tab" data-account-tab="register">Регистрация</button></div>
+    <form id="accountForm"><label class="field"><span>Имейл</span><input id="accountEmail" type="email" required
+          autocomplete="email"></label><label class="field"><span>Парола <small>(минимум 10 символа при
+            регистрация)</small></span><input id="accountPassword" type="password" required minlength="10"
+          autocomplete="current-password"></label><button class="btn btn-primary btn-full" type="submit"
+        id="accountSubmit">Вход <span>↗</span></button></form>
+    <div id="accountStatus" class="inline-status"></div>
+    <div id="loggedInPanel" class="logged-in-panel hidden"><b id="loggedInEmail"></b>
+      <p>Профилът е активен.</p><button class="btn btn-outline btn-full" id="logoutButton">Изход</button><button
+        class="text-btn" id="showPreferences">Настройки на интересите ↓</button>
+      <form id="preferencesForm" class="preferences-form hidden"><label class="field"><span>Любими теми</span>
+          <div class="interest-chips"><label><input type="checkbox"
+                value="история"><span>История</span></label><label><input type="checkbox"
+                value="природа"><span>Природа</span></label><label><input type="checkbox"
+                value="култура"><span>Култура</span></label><label><input type="checkbox"
+                value="музей"><span>Музеи</span></label><label><input type="checkbox"
+                value="традиции"><span>Традиции</span></label><label><input type="checkbox" value="вино"><span>Храна и
+                вино</span></label></div>
+        </label><label class="field"><span>Предпочитан транспорт</span><select id="prefTransport">
+            <option value="car">Автомобил</option>
+            <option value="walking">Пеша</option>
+            <option value="train">Влак</option>
+          </select></label><label class="field"><span>Бюджет за посещения (€)</span><input id="prefBudget" type="number"
+            min="0"></label><button class="btn btn-primary btn-full" type="submit">Запази предпочитанията</button>
+      </form>
+    </div>
+  </dialog>
+  <script src="./app.js?v=static2-5"></script>
+</body>
+
+</html>

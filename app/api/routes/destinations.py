@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import or_
 from sqlalchemy.orm import Session
+import re
 from app.db import get_db
 from app.dependencies import require_admin
 from app.models import Destination, Event, User
@@ -9,6 +10,25 @@ from app.services.recommender import haversine_km
 
 router = APIRouter(prefix="/api", tags=["destinations"])
 admin_router = APIRouter(prefix="/api/admin", tags=["administration"])
+
+_LATIN_TO_CYRILLIC = str.maketrans({
+    "a": "а", "b": "б", "v": "в", "g": "г", "d": "д", "e": "е", "j": "ж", "z": "з", "i": "и", "y": "й", "k": "к", "l": "л", "m": "м", "n": "н", "o": "о", "p": "п", "r": "р", "s": "с", "t": "т", "u": "у", "f": "ф", "h": "х", "c": "ц", "q": "ч", "w": "ш", "x": "ъ"
+})
+_CYRILLIC_TO_LATIN = str.maketrans({
+    "а":"a", "б":"b", "в":"v", "г":"g", "д":"d", "е":"e", "ж":"zh", "з":"z", "и":"i", "й":"y", "к":"k", "л":"l", "м":"m", "н":"n", "о":"o", "п":"p", "р":"r", "с":"s", "т":"t", "у":"u", "ф":"f", "х":"h", "ц":"ts", "ч":"ch", "ш":"sh", "щ":"sht", "ъ":"a", "ь":"y", "ю":"yu", "я":"ya"
+})
+_SEARCH_ALIASES = {"history": "история", "nature": "природа", "museum": "музей", "culture": "култура", "wine": "вино", "food": "храна", "sofia": "софия", "plovdiv": "пловдив", "rila": "рила", "veliko tarnovo": "велико търново"}
+
+def _search_terms(value: str) -> set[str]:
+    value = re.sub(r"\s+", " ", value.casefold().strip())
+    terms = {value}
+    if value in _SEARCH_ALIASES:
+        terms.add(_SEARCH_ALIASES[value])
+    if re.fullmatch(r"[a-z\s-]+", value):
+        terms.add(value.translate(_LATIN_TO_CYRILLIC))
+    else:
+        terms.add(value.translate(_CYRILLIC_TO_LATIN))
+    return terms
 
 
 @router.get("/destinations", response_model=list[DestinationOut])
@@ -28,8 +48,12 @@ def list_destinations(
         raise HTTPException(status_code=422, detail="latitude and longitude must be supplied together")
     query = db.query(Destination)
     if q:
-        term = f"%{q.strip()}%"
-        query = query.filter(or_(Destination.name.ilike(term), Destination.description.ilike(term), Destination.historical_context.ilike(term), Destination.region.ilike(term)))
+        terms = _search_terms(q)
+        conditions = []
+        for term_value in terms:
+            term = f"%{term_value}%"
+            conditions.extend((Destination.name.ilike(term), Destination.description.ilike(term), Destination.historical_context.ilike(term), Destination.region.ilike(term)))
+        query = query.filter(or_(*conditions))
     if region:
         query = query.filter(Destination.region.ilike(f"%{region.strip()}%"))
     if verified_only:

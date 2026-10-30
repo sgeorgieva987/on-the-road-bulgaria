@@ -160,10 +160,11 @@ def compute_google_route(
                     detail = f" [{status or 'Google error'}: {message or 'no message'}]"
             except (ValueError, AttributeError):
                 pass
-        raise GoogleRoutesError(
-            "Google Maps could not calculate this route. Check the server key, billing, enabled Routes API, restrictions, and quota."
-            + detail
-        ) from exc
+        message = (
+            "Google Routes API permission denied. In Google Cloud, enable Routes API, attach billing, and ensure this server key "
+            "is restricted to Routes API. Backend keys must use IP/none application restrictions, not HTTP referrers."
+        )
+        raise GoogleRoutesError(message + detail) from exc
 
     routes = payload.get("routes") or []
     if not routes:

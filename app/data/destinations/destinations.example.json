@@ -1,0 +1,13 @@
+[
+  {
+    "slug": "rila-monastery",
+    "name": "Рилски манастир",
+    "region": "Кюстендил",
+    "municipality": "Рила",
+    "description": "Манастирски комплекс в Рила.",
+    "historical_context": "Добави проверена историческа информация тук.",
+    "categories": ["история", "култура"],
+    "tags": ["популярен", "планина"],
+    "estimated_visit_minutes": 120
+  }
+]

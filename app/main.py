@@ -27,7 +27,11 @@ async def lifespan(app: FastAPI):
     command.upgrade(alembic_config, "head")
     settings.upload_dir.resolve().mkdir(parents=True, exist_ok=True)
     with SessionLocal() as db:
-        json_path = project_root / "app" / "data" / "destinations.json"
+        data_dir = project_root / "app" / "data" / "destinations"
+        json_path = data_dir / "destinations.json"
+        if not json_path.is_file():
+            # Keep the original single-file location working for existing installs.
+            json_path = project_root / "app" / "data" / "destinations.json"
         imported = 0
         if json_path.is_file():
             records = read_destination_file(json_path)
@@ -79,12 +83,18 @@ def create_app(*, initialize_database: bool = True) -> FastAPI:
     def health():
         return {"status": "ok", "app": settings.app_name, "environment": settings.app_env}
 
-    static_dir = Path(__file__).parent / "static"
+    static_dir = Path(__file__).parent / "static2"
     app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
     @app.get("/", include_in_schema=False)
     def home():
-        return FileResponse(static_dir / "index.html")
+        return FileResponse(static_dir / "index.html", headers={"Cache-Control": "no-store"})
+
+    # Serve the same relative asset paths used by the GitHub Pages build.
+    # Keeping these aliases means the frontend behaves identically in the
+    # FastAPI deployment and when the contents of static2 are published alone.
+    for asset_name in ("styles.css", "app.js", "bulgaria.geojson", "logo.png", "logo_without_text.png"):
+        app.add_api_route(f"/{asset_name}", lambda asset_name=asset_name: FileResponse(static_dir / asset_name), include_in_schema=False)
 
     return app
 

@@ -14,6 +14,8 @@ services:
       retries: 20
   web:
     build: .
+    env_file:
+      - .env
     environment:
       APP_ENV: ${APP_ENV:-development}
       DATABASE_URL: postgresql+psycopg://otr_bulgaria:${POSTGRES_PASSWORD:-change-this-password}@db:5432/on_the_road_bulgaria
@@ -23,8 +25,6 @@ services:
       MAX_UPLOAD_MB: ${MAX_UPLOAD_MB:-20}
       MAX_PDF_PAGES: ${MAX_PDF_PAGES:-200}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://127.0.0.1:8000,http://localhost:8000}
-      GOOGLE_ROUTES_API_KEY: ${GOOGLE_ROUTES_API_KEY:-}
-      GOOGLE_MAPS_JS_API_KEY: ${GOOGLE_MAPS_JS_API_KEY:-}
     ports:
       - "8000:8000"
     volumes:
